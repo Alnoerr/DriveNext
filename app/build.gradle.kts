@@ -33,6 +33,11 @@ android {
 
 dependencies {
     implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.viewpager2)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx.android)
 
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.appcompat)

@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/continue_button">
+        app:layout_constraintBottom_toTopOf="@id/retry_button">
 
         <ImageView
             android:id="@+id/plugs"
@@ -51,7 +51,7 @@
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/continue_button"
+        android:id="@+id/retry_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
