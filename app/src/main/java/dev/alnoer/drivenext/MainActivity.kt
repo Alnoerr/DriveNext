@@ -20,9 +20,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun applySystemBarInsets() {
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        val root = findViewById<android.view.View>(R.id.main)
+        val initialPaddingLeft = root.paddingLeft
+        val initialPaddingTop = root.paddingTop
+        val initialPaddingRight = root.paddingRight
+        val initialPaddingBottom = root.paddingBottom
+
+        ViewCompat.setOnApplyWindowInsetsListener(root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            v.setPadding(
+                initialPaddingLeft + systemBars.left,
+                initialPaddingTop + systemBars.top,
+                initialPaddingRight + systemBars.right,
+                initialPaddingBottom + systemBars.bottom,
+            )
             insets
         }
     }
