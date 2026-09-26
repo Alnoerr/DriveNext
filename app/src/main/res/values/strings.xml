@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DriveNext</string>
+    <string name="slogan">Поможем найти твою следующую поездку</string>
+    <string name="error_title_no_connection">Нет подключения к интернету</string>
+    <string name="error_body_no_connection">Проверьте подключение и повторите попытку</string>
+    <string name="error_action_retry">Повторить попытку</string>
+</resources>

@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="screen_padding_horizontal">24dp</dimen>
+    <dimen name="screen_padding_vertical">16dp</dimen>
+    <dimen name="button_max_width">320dp</dimen>
+</resources>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Base.Theme.DriveNext" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/dark_purple</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <item name="textAppearanceTitleLarge">
+            @style/TextAppearance.DriveNext.TitleLarge
+        </item>
+
+        <item name="textAppearanceBodyMedium">
+            @style/TextAppearance.DriveNext.BodyMedium
+        </item>
+
+        <item name="materialButtonStyle">
+            @style/Widget.DriveNext.Button
+        </item>
+    </style>
+
+    <style name="Theme.DriveNext" parent="Base.Theme.DriveNext" />
+    <style name="Theme.DriveNext.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="postSplashScreenTheme">@style/Theme.DriveNext</item>
+    </style>
+
+    <style name="TextAppearance.DriveNext.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
+        <item name="fontFamily">@font/montserrat</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textFontWeight">600</item>
+    </style>
+
+    <style name="TextAppearance.DriveNext.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
+        <item name="fontFamily">@font/montserrat</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textFontWeight">400</item>
+    </style>
+
+    <style name="Widget.DriveNext.Button" parent="Widget.Material3.Button">
+        <item name="android:minHeight">52dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="cornerRadius">8dp</item>
+    </style>
+
+</resources>
