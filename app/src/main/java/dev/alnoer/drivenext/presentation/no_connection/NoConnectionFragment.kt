@@ -15,7 +15,12 @@ class NoConnectionFragment : Fragment(R.layout.fragment_no_connection) {
 
         retryButton.setOnClickListener {
             if (appContainer.networkMonitor.hasInternet) {
-                findNavController().navigate(R.id.no_connection_to_auth)
+                val destination = if (appContainer.appPreferences.isOnboardingCompleted) {
+                    R.id.no_connection_to_auth
+                } else {
+                    R.id.no_connection_to_onboarding
+                }
+                findNavController().navigate(destination)
             }
         }
     }

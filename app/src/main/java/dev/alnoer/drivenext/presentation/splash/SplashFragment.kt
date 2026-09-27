@@ -15,15 +15,15 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             delay(2.seconds)
 
-            if (!appContainer.appPreferences.isOnboardingCompleted) {
-                findNavController().navigate(R.id.splash_to_onboarding)
-            } else if (appContainer.networkMonitor.hasInternet) {
-                findNavController().navigate(R.id.splash_to_auth)
-            } else {
+            if (!appContainer.networkMonitor.hasInternet) {
                 findNavController().navigate(R.id.splash_to_no_connection)
+            } else if (!appContainer.appPreferences.isOnboardingCompleted) {
+                findNavController().navigate(R.id.splash_to_onboarding)
+            } else {
+                findNavController().navigate(R.id.splash_to_auth)
             }
         }
     }

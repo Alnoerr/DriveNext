@@ -33,6 +33,12 @@
         android:name="dev.alnoer.drivenext.presentation.no_connection.NoConnectionFragment">
 
         <action
+            android:id="@+id/no_connection_to_onboarding"
+            app:destination="@id/onboarding_fragment"
+            app:popUpTo="@id/no_connection_fragment"
+            app:popUpToInclusive="true" />
+
+        <action
             android:id="@+id/no_connection_to_auth"
             app:destination="@id/auth_fragment"
             app:popUpTo="@id/no_connection_fragment"

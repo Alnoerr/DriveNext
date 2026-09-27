@@ -1,3 +1,4 @@
 <resources>
+    <dimen name="splash_heading_top_margin">0dp</dimen>
     <dimen name="onboarding_image_max_height">180dp</dimen>
 </resources>
