@@ -7,8 +7,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import dev.alnoer.drivenext.R
+import dev.alnoer.drivenext.extensions.appContainer
 
 class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
     private lateinit var viewPager: ViewPager2
@@ -87,7 +89,12 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
     }
 
     private fun finishOnboarding() {
-
+        appContainer.appPreferences.isOnboardingCompleted = true
+        if (appContainer.networkMonitor.hasInternet) {
+            findNavController().navigate(R.id.onboarding_to_auth)
+        } else {
+            findNavController().navigate(R.id.onboarding_to_no_connection)
+        }
     }
 
     private fun updateButtons(position: Int) {

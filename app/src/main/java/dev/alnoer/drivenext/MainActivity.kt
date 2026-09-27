@@ -8,11 +8,8 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
-import dev.alnoer.drivenext.core.network.NetworkMonitor
 
 class MainActivity : AppCompatActivity() {
-    private val networkMonitor = NetworkMonitor(this)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
 

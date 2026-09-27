@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dev.alnoer.drivenext.R
+import dev.alnoer.drivenext.extensions.appContainer
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.seconds
@@ -16,7 +17,14 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
 
         lifecycleScope.launch {
             delay(2.seconds)
-            findNavController().navigate(R.id.splash_to_onboarding)
+
+            if (!appContainer.appPreferences.isOnboardingCompleted) {
+                findNavController().navigate(R.id.splash_to_onboarding)
+            } else if (appContainer.networkMonitor.hasInternet) {
+                findNavController().navigate(R.id.splash_to_auth)
+            } else {
+                findNavController().navigate(R.id.splash_to_no_connection)
+            }
         }
     }
 }
