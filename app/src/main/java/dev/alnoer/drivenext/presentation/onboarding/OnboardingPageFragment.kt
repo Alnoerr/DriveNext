@@ -17,23 +17,21 @@ class OnboardingPageFragment : Fragment(R.layout.fragment_onboarding_page) {
         val description = view.findViewById<TextView>(R.id.onboarding_description)
 
         image.setImageResource(requireArguments().getInt(ARG_IMAGE))
-        title.text = requireArguments().getString(ARG_TITLE)
-        description.text = requireArguments().getString(ARG_DESCRIPTION)
+        title.setText(requireArguments().getInt(ARG_TITLE))
+        description.setText(requireArguments().getInt(ARG_DESCRIPTION))
     }
 
     companion object {
         private const val ARG_IMAGE = "imageRes"
         private const val ARG_TITLE = "titleRes"
         private const val ARG_DESCRIPTION = "descriptionRes"
-        private const val ARG_BUTTON_NEXT_TEXT = "buttonNextTextRes"
 
         fun newInstance(page: OnboardingPage): OnboardingPageFragment =
             OnboardingPageFragment().apply {
                 arguments = bundleOf(
                     ARG_IMAGE to page.imageRes,
                     ARG_TITLE to page.titleRes,
-                    ARG_DESCRIPTION to page.descriptionRes,
-                    ARG_BUTTON_NEXT_TEXT to page.buttonNextTextRes
+                    ARG_DESCRIPTION to page.descriptionRes
                 )
             }
     }

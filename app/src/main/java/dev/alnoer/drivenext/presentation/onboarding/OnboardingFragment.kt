@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.view.isVisible
+import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import dev.alnoer.drivenext.R
@@ -14,6 +14,12 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
     private lateinit var viewPager: ViewPager2
     private lateinit var buttonNext: Button
     private lateinit var buttonSkip: TextView
+    private val pageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
+        override fun onPageSelected(position: Int) {
+            updateButtons(position)
+            updateIndicators(position)
+        }
+    }
 
     private val pages = listOf(
         OnboardingPage(
@@ -69,46 +75,27 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
             }
         }
 
-        viewPager.registerOnPageChangeCallback(
-            object : ViewPager2.OnPageChangeCallback() {
-                override fun onPageSelected(position: Int) {
-                    super.onPageSelected(position)
+        viewPager.registerOnPageChangeCallback(pageChangeCallback)
+        updateButtons(viewPager.currentItem)
+        updateIndicators(viewPager.currentItem)
+    }
 
-                    updateImage(position)
-                    updateTexts(position)
-                    updateButtons(position)
-                    updateIndicators(position)
-                }
-            }
-        )
+    override fun onDestroyView() {
+        viewPager.unregisterOnPageChangeCallback(pageChangeCallback)
+        viewPager.adapter = null
+        super.onDestroyView()
     }
 
     private fun finishOnboarding() {
 
     }
 
-    private fun updateImage(position: Int) {
-        val image = requireView().findViewById<ImageView>(R.id.onboarding_image)
-
-        image.setImageResource(pages[position].imageRes)
-    }
-
-    private fun updateTexts(position: Int) {
-        val title = requireView().findViewById<TextView>(R.id.onboarding_title)
-        val description = requireView().findViewById<TextView>(R.id.onboarding_description)
-
-        title.text = getString(pages[position].titleRes)
-        description.text = getString(pages[position].descriptionRes)
-    }
-
     private fun updateButtons(position: Int) {
         val isLastPage = position == pages.lastIndex
 
-        buttonNext.text = getString(
-            if (isLastPage) R.string.onboarding_finish else R.string.onboarding_next
-        )
+        buttonNext.setText(pages[position].buttonNextTextRes)
 
-        buttonSkip.isVisible = !isLastPage
+        buttonSkip.isInvisible = isLastPage
     }
 
     private fun updateIndicators(position: Int) {
