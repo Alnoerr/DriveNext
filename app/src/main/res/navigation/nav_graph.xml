@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splash_fragment">
+
+    <fragment
+        android:id="@+id/splash_fragment"
+        android:name="dev.alnoer.drivenext.presentation.splash.SplashFragment">
+
+        <action
+            android:id="@+id/splash_to_no_connection"
+            app:destination="@id/no_connection_fragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/splash_to_onboarding"
+            app:destination="@id/onboarding_fragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/no_connection_fragment"
+        android:name="dev.alnoer.drivenext.presentation.no_connection.NoConnectionFragment" />
+
+    <fragment
+        android:id="@+id/onboarding_fragment"
+        android:name="dev.alnoer.drivenext.presentation.onboarding.OnboardingFragment" />
+
+</navigation>
