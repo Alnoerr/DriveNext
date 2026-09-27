@@ -2,4 +2,6 @@
     <dimen name="screen_padding_horizontal">24dp</dimen>
     <dimen name="screen_padding_vertical">16dp</dimen>
     <dimen name="button_max_width">320dp</dimen>
+    <dimen name="onboarding_image_max_height">360dp</dimen>
+    <dimen name="splash_logo_max_size">320dp</dimen>
 </resources>

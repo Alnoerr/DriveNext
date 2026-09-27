@@ -1,0 +1,3 @@
+<resources>
+    <dimen name="onboarding_image_max_height">180dp</dimen>
+</resources>
