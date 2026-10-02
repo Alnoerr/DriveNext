@@ -1,21 +1,22 @@
 package dev.alnoer.drivenext.presentation.onboarding
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
+import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import dev.alnoer.drivenext.R
+import dev.alnoer.drivenext.databinding.FragmentOnboardingBinding
 import dev.alnoer.drivenext.extensions.appContainer
 
-class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
-    private lateinit var viewPager: ViewPager2
-    private lateinit var buttonNext: Button
-    private lateinit var buttonSkip: TextView
+class OnboardingFragment : Fragment() {
+    private var _binding: FragmentOnboardingBinding? = null
+    private val binding get() = requireNotNull(_binding)
+
     private val pageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {
             updateButtons(position)
@@ -44,31 +45,36 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
         )
     )
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentOnboardingBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
     override fun onViewCreated(
         view: View,
         savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewPager = view.findViewById(R.id.viewPager)
-        buttonNext = view.findViewById(R.id.buttonNext)
-        buttonSkip = view.findViewById(R.id.buttonSkip)
-
-        viewPager.adapter = OnboardingAdapter(this, pages)
+        binding.viewPager.adapter = OnboardingAdapter(this, pages)
 
         setupListeners()
     }
 
     private fun setupListeners() {
-        buttonSkip.setOnClickListener {
+        binding.buttonSkip.setOnClickListener {
             finishOnboarding()
         }
 
-        buttonNext.setOnClickListener {
-            val currentPage = viewPager.currentItem
+        binding.buttonNext.setOnClickListener {
+            val currentPage = binding.viewPager.currentItem
 
             if (currentPage < pages.lastIndex) {
-                viewPager.setCurrentItem(
+                binding.viewPager.setCurrentItem(
                     currentPage + 1,
                     true
                 )
@@ -77,15 +83,16 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
             }
         }
 
-        viewPager.registerOnPageChangeCallback(pageChangeCallback)
-        updateButtons(viewPager.currentItem)
-        updateIndicators(viewPager.currentItem)
+        binding.viewPager.registerOnPageChangeCallback(pageChangeCallback)
+        updateButtons(binding.viewPager.currentItem)
+        updateIndicators(binding.viewPager.currentItem)
     }
 
     override fun onDestroyView() {
-        viewPager.unregisterOnPageChangeCallback(pageChangeCallback)
-        viewPager.adapter = null
+        binding.viewPager.unregisterOnPageChangeCallback(pageChangeCallback)
+        binding.viewPager.adapter = null
         super.onDestroyView()
+        _binding = null
     }
 
     private fun finishOnboarding() {
@@ -100,16 +107,16 @@ class OnboardingFragment : Fragment(R.layout.fragment_onboarding) {
     private fun updateButtons(position: Int) {
         val isLastPage = position == pages.lastIndex
 
-        buttonNext.setText(pages[position].buttonNextTextRes)
+        binding.buttonNext.setText(pages[position].buttonNextTextRes)
 
-        buttonSkip.isInvisible = isLastPage
+        binding.buttonSkip.isInvisible = isLastPage
     }
 
     private fun updateIndicators(position: Int) {
         val dots = listOf<ImageView>(
-            requireView().findViewById(R.id.dot1),
-            requireView().findViewById(R.id.dot2),
-            requireView().findViewById(R.id.dot3)
+            binding.dot1,
+            binding.dot2,
+            binding.dot3
         )
 
         dots.forEachIndexed { index, view ->
