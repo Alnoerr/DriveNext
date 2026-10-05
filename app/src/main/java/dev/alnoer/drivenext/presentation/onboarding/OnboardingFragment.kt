@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -113,7 +112,7 @@ class OnboardingFragment : Fragment() {
     }
 
     private fun updateIndicators(position: Int) {
-        val dots = listOf<ImageView>(
+        val dots = listOf(
             binding.dot1,
             binding.dot2,
             binding.dot3

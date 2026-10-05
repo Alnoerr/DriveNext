@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import dev.alnoer.drivenext.databinding.FragmentOnboardingPageBinding
 
@@ -41,11 +40,11 @@ class OnboardingPageFragment : Fragment() {
 
         fun newInstance(page: OnboardingPage): OnboardingPageFragment =
             OnboardingPageFragment().apply {
-                arguments = bundleOf(
-                    ARG_IMAGE to page.imageRes,
-                    ARG_TITLE to page.titleRes,
-                    ARG_DESCRIPTION to page.descriptionRes
-                )
+                arguments = Bundle().apply {
+                    putInt(ARG_IMAGE, page.imageRes)
+                    putInt(ARG_TITLE, page.titleRes)
+                    putInt(ARG_DESCRIPTION, page.descriptionRes)
+                }
             }
     }
 }
