@@ -1,3 +1,7 @@
 <resources>
-    <!-- Share the custom DayNight theme and typography from values/themes.xml. -->
+    <style name="Theme.DriveNext" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowBackground">@color/splash_background</item>
+    </style>
 </resources>

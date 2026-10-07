@@ -4,8 +4,6 @@
     <string name="error_title_no_connection">Нет подключения к интернету</string>
     <string name="error_body_no_connection">Проверьте подключение и повторите попытку</string>
     <string name="error_action_retry">Повторить попытку</string>
-    <string name="placeholder_title">Заголовок</string>
-    <string name="placeholder_description">Описание</string>
     <string name="onboarding_skip">Пропустить</string>
     <string name="onboarding_next">Далее</string>
     <string name="onboarding_finish">Поехали</string>
