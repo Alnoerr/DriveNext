@@ -16,10 +16,12 @@ import dev.alnoer.drivenext.R
 fun DriveNextButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    enabled: Boolean = true,
     content: @Composable (RowScope.() -> Unit)
 ) {
     Button(
         onClick = onClick,
+        enabled = enabled,
         modifier = modifier
             .widthIn(max = dimensionResource(R.dimen.button_max_width))
             .fillMaxWidth()
